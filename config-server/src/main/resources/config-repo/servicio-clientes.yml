@@ -1,0 +1,13 @@
+# Propiedades exclusivas del Config Server para servicio-clientes
+reniec:
+  api:
+    url: https://api.decolecta.com/v1/reniec/dni
+    # El token se inyecta via variable de entorno RENIEC_TOKEN (o Vault)
+    token: ${RENIEC_TOKEN:token-de-prueba}
+
+feign:
+  client:
+    config:
+      reniec-client:
+        connect-timeout: 5000
+        read-timeout: 5000

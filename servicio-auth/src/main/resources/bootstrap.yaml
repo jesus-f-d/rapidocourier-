@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: servicio-auth
+  cloud:
+    vault:
+      uri: http://localhost:8200
+      token: ${VAULT_TOKEN:dev-only-token}
+      kv:
+        enabled: true
+        backend: secret
+        default-context: rapidocourier
+      fail-fast: false  # permite arrancar sin Vault en desarrollo; en prod cambiar a true
+    config:
+      import: "vault://"

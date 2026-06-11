@@ -1,0 +1,88 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: servicio-auth
+          uri: lb://servicio-auth
+          predicates:
+            - Path=/api/v1/auth/**
+          filters:
+            - StripPrefix=0
+            - name: CircuitBreaker
+              args:
+                name: auth-cb
+                fallbackUri: forward:/fallback/auth
+
+        - id: servicio-clientes
+          uri: lb://servicio-clientes
+          predicates:
+            - Path=/api/v1/clientes/**
+          filters:
+            - StripPrefix=0
+            - AddRequestHeader=X-Service-Origin, api-gateway
+            - name: CircuitBreaker
+              args:
+                name: clientes-cb
+                fallbackUri: forward:/fallback/clientes
+
+        - id: servicio-paquetes
+          uri: lb://servicio-paquetes
+          predicates:
+            - Path=/api/v1/paquetes/**
+          filters:
+            - StripPrefix=0
+            - AddRequestHeader=X-Service-Origin, api-gateway
+            - name: CircuitBreaker
+              args:
+                name: paquetes-cb
+                fallbackUri: forward:/fallback/paquetes
+
+        - id: servicio-categorias
+          uri: lb://servicio-paquetes
+          predicates:
+            - Path=/api/v1/categorias/**
+          filters:
+            - StripPrefix=0
+            - AddRequestHeader=X-Service-Origin, api-gateway
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 10
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      auth-cb:
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+        sliding-window-size: 5
+      clientes-cb:
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+        sliding-window-size: 5
+      paquetes-cb:
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+        sliding-window-size: 5
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

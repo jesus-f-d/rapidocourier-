@@ -1,0 +1,6 @@
+# Propiedades exclusivas del Config Server para servicio-paquetes
+tarifa:
+  base:
+    por-kg: 2.5
+    por-km: 0.10
+    minima: 5.0
