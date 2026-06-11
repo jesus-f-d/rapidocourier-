@@ -308,6 +308,7 @@ curl http://localhost:8083/actuator/env | grep "tarifa"
 ## Dashboard Eureka
 
 Acceder a: `http://localhost:8761`
+![Dashboard de Eureka con todos los servicios en UP](docs/eureka-dashboard.png)
 
 Servicios esperados en estado UP:
 - CONFIG-SERVER
