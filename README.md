@@ -1,5 +1,21 @@
 # RapidoCourier S.A.C. - Sistema de Microservicios
 
+## Frontend Web
+
+El directorio [`frontend/`](frontend/) contiene la interfaz web (React + Vite) que consume
+todos los microservicios a través del API Gateway. Incluye login con JWT, dashboard,
+gestión de clientes (RENIEC), registro y seguimiento de paquetes con historial de estados,
+y vistas adaptadas por rol (ADMIN / OPERADOR / CLIENTE).
+
+```bash
+cd frontend
+npm install
+npm run dev     # abre http://localhost:5173 (requiere el backend levantado)
+```
+
+La URL del gateway se configura en `frontend/.env` (`VITE_API_URL`, por defecto `http://localhost:8080`).
+El gateway expone CORS global para permitir el acceso desde el frontend.
+
 ## Mapa de Microservicios
 
 | Servicio | Bounded Context | RFs Asignados | Base de Datos | Puerto |
