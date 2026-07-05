@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -64,10 +66,16 @@ public class Paquete {
     @Builder.Default
     private EstadoPaquete estado = EstadoPaquete.REGISTRADO;
 
+    // Excluidas de equals/hashCode/toString para evitar recursion infinita
+    // entre Paquete y Categoria (relacion bidireccional M:M)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     @OneToMany(mappedBy = "paquete", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
     private List<HistorialEstado> historial = new ArrayList<>();
 
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     @ManyToMany
     @JoinTable(
             name = "paquete_categorias",

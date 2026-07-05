@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -29,7 +31,11 @@ public class Categoria {
     @Column(length = 200)
     private String descripcion;
 
+    // Excluida de equals/hashCode/toString para evitar recursion infinita
+    // entre Categoria y Paquete (relacion bidireccional M:M)
     @JsonIgnore
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     @ManyToMany(mappedBy = "categorias")
     @Builder.Default
     private Set<Paquete> paquetes = new HashSet<>();
