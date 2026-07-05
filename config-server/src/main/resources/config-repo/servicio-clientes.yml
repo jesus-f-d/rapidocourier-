@@ -1,7 +1,8 @@
 # Propiedades exclusivas del Config Server para servicio-clientes
 reniec:
   api:
-    url: https://api.decolecta.com/v1/reniec/dni
+    # URL sobreescribible via variable de entorno RENIEC_API_URL (util para pruebas locales)
+    url: ${RENIEC_API_URL:https://api.decolecta.com/v1/reniec/dni}
     # El token se inyecta via variable de entorno RENIEC_TOKEN (o Vault)
     token: ${RENIEC_TOKEN:token-de-prueba}
 
