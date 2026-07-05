@@ -102,7 +102,7 @@ export default function Clientes() {
           <h1>Clientes</h1>
           <p>El nombre completo se obtiene automáticamente de RENIEC al registrar el DNI.</p>
         </div>
-        <button className="btn btn-primario" onClick={abrirCrear}>＋ Registrar cliente</button>
+        <button className="btn btn-primario" onClick={abrirCrear}>+ Registrar cliente</button>
       </div>
 
       {error && <div className="alerta error">{error}</div>}

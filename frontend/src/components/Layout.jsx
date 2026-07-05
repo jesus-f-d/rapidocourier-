@@ -7,22 +7,22 @@ export default function Layout({ children }) {
   return (
     <div className="app-layout">
       <aside className="sidebar">
-        <div className="logo">📦 Rapido<span>Courier</span></div>
+        <div className="logo">Rapido<span>Courier</span></div>
         <nav>
           <NavLink to="/" end className={({ isActive }) => (isActive ? 'activo' : '')}>
-            🏠 Dashboard
+            Dashboard
           </NavLink>
           {puedeGestionar && (
             <NavLink to="/clientes" className={({ isActive }) => (isActive ? 'activo' : '')}>
-              👥 Clientes
+              Clientes
             </NavLink>
           )}
           <NavLink to="/paquetes" className={({ isActive }) => (isActive ? 'activo' : '')}>
-            📦 Paquetes
+            Paquetes
           </NavLink>
           {esAdmin && (
             <NavLink to="/categorias" className={({ isActive }) => (isActive ? 'activo' : '')}>
-              🏷️ Categorías
+              Categorías
             </NavLink>
           )}
         </nav>

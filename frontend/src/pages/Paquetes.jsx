@@ -119,7 +119,7 @@ export default function Paquetes() {
         </div>
         {puedeGestionar && (
           <button className="btn btn-primario" onClick={() => { setForm(FORM_VACIO); setErroresCampo({}); setModalCrear(true); }}>
-            ＋ Registrar paquete
+            + Registrar paquete
           </button>
         )}
       </div>

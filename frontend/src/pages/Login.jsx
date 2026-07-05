@@ -38,7 +38,7 @@ export default function Login() {
     <div className="pantalla-login">
       <div className="caja-login">
         <div className="marca">
-          <h1>📦 Rapido<span>Courier</span></h1>
+          <h1>Rapido<span>Courier</span></h1>
           <p>Sistema de gestión de envíos y paquetería</p>
         </div>
 

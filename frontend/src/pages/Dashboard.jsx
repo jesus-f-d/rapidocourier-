@@ -30,7 +30,7 @@ export default function Dashboard() {
     <>
       <div className="cabecera-pagina">
         <div>
-          <h1>Bienvenido, {sesion?.nombre} 👋</h1>
+          <h1>Bienvenido, {sesion?.nombre}</h1>
           <p>{esCliente ? 'Resumen de tus envíos' : 'Resumen general de la operación'}</p>
         </div>
         <Link to="/paquetes" className="btn btn-primario">Ver paquetes</Link>
