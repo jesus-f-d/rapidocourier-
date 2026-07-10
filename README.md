@@ -142,6 +142,15 @@ Comunicación **sincrónica** (Feign) justificada porque:
 - Variable de entorno: `RENIEC_TOKEN` (token de la API de decolecta)
 - Repositorio Git local de configuración (ver sección **Config Server con repositorio Git**) — debe existir **antes** de arrancar el config-server
 
+### Arranque rápido (Windows)
+
+```powershell
+.\iniciar-backend.ps1
+```
+
+El script abre cada servicio en su propia ventana, en el orden correcto, genera un
+`JWT_SECRET` para la sesión y pide el token de RENIEC si no está en el entorno.
+
 ### Orden de arranque (importante)
 
 ```bash
